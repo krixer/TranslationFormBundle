@@ -64,9 +64,9 @@ class GedmoTranslationMapper implements DataMapperInterface
             $locale = $translationsFieldsForm->getConfig()->getName();
 
             foreach ($translationsFieldsForm->getData() as $field => $content) {
-                $existingTranslation = $data ? $data->filter(function($object) use ($locale, $field) {
+                $existingTranslation = $data->filter(function($object) use ($locale, $field) {
                     return ($object && ($object->getLocale() === $locale) && ($object->getField() === $field));
-                })->first() : null;
+                })->first();
 
                 if ($existingTranslation) {
                     $existingTranslation->setContent($content);
